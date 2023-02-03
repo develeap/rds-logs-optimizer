@@ -1,12 +1,6 @@
-# module "rds" {
-#   source  = "terraform-aws-modules/rds/aws"
-#   version = "5.3.0"
-#   # insert the 1 required variable here
-# }
-
 # locals {
-#   sar_application         = "arn:aws:serverlessrepo:eu-central-1:640663510286:applications/rds-audit-logs-s3"
-#   sar_application_version = "0.0.2"
+#   sar_application         = "arn:aws:serverlessrepo:eu-north-1:006262944085:applications/rds-audit-logs-s3"
+#   sar_application_version = "1.0.0"
 #   rds_instance_identifier = "mydb"
 # }
 
@@ -17,16 +11,11 @@
 
 #   parameters = {
 #     Name                  = "rds-audit-logs-${local.rds_instance_identifier}"
-#     BucketName            = aws_s3_bucket.rds_audit_logs.id
+#     BucketName            = data.ninja_s3_bucket.id
 #     RdsInstanceIdentifier = local.rds_instance_identifier
 #     SarApplication        = local.sar_application
 #     SarApplicationVersion = local.sar_application_version
 #   }
 
 #   capabilities = ["CAPABILITY_AUTO_EXPAND", "CAPABILITY_IAM"]
-# }
-
-# resource "aws_s3_bucket" "rds_audit_logs" {
-#   bucket = "rds-audit-logs"
-#   acl    = "private"
 # }

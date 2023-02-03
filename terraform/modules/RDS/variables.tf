@@ -8,22 +8,22 @@ variable "no_of_subnets" {
   description = "Tags assigned to the resources."
 }
 
-variable "aws_vpc" {
+variable "ninja_vpc" {
   type        = any
   description = "Network module's VPC."
 }
 
-variable "aws_subnet" {
+variable "ninja_subnets" {
   type        = any
   description = "Network module's Subnet."
 }
 
-variable "aws_internet_gateway" {
+variable "ninja_internet_gateway" {
   type        = any
   description = "Network module's Internet Gateway."
 }
 
-variable "aws_security_group" {
+variable "ninja_security_group" {
   type        = any
   description = "Network module's Security Group."
 }

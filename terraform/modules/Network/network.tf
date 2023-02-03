@@ -6,7 +6,7 @@ resource "aws_vpc" "ninja_vpc" {
   tags = var.tags
 }
 
-resource "aws_subnet" "ninja_subnet" {
+resource "aws_subnet" "ninja_subnets" {
   count = var.no_of_subnets
 
   vpc_id                  = aws_vpc.ninja_vpc.id
@@ -37,6 +37,6 @@ resource "aws_route_table" "ninja_rtb" {
 resource "aws_route_table_association" "ninja_rtb_association" {
   count = var.no_of_subnets
 
-  subnet_id      = element(aws_subnet.ninja_subnet.*.id, count.index)
+  subnet_id      = element(aws_subnet.ninja_subnets.*.id, count.index)
   route_table_id = aws_route_table.ninja_rtb.id
 }

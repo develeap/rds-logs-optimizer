@@ -19,10 +19,10 @@ module "RDS" {
   source     = "./modules/RDS"
   depends_on = [module.Network]
 
-  aws_vpc                              = module.Network.aws_vpc
-  aws_subnet                           = module.Network.aws_subnet
-  aws_internet_gateway                 = module.Network.aws_internet_gateway
-  aws_security_group                   = module.Network.aws_security_group
+  ninja_vpc                            = module.Network.ninja_vpc
+  ninja_subnets                        = module.Network.ninja_subnets
+  ninja_internet_gateway               = module.Network.ninja_internet_gateway
+  ninja_security_group                 = module.Network.ninja_security_group
   tags                                 = var.tags
   no_of_subnets                        = var.no_of_subnets
   db_subnet_group_name                 = var.db_subnet_group_name
@@ -33,4 +33,12 @@ module "RDS" {
   db_instance_skip_final_snapshot_bool = var.db_instance_skip_final_snapshot_bool
   db_instance_parameter_group          = var.db_instance_parameter_group
   db_instance_parameters_map           = var.db_instance_parameters_map
+}
+
+module "S3" {
+  source     = "./modules/S3"
+  depends_on = [module.RDS]
+
+  tags        = var.tags
+  s3_metadata = var.s3_metadata
 }
