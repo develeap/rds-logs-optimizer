@@ -115,3 +115,13 @@ variable "s3_metadata" {
   })
   description = "Metadata of S3 bucket used to store logs from RDS instance."
 }
+
+variable "sar_application" {
+  type        = string
+  description = "SAR application ARN."
+}
+
+variable "sar_application_version" {
+  type        = string
+  description = "SAR application version."
+}

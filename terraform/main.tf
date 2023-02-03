@@ -42,3 +42,14 @@ module "S3" {
   tags        = var.tags
   s3_metadata = var.s3_metadata
 }
+
+module "Lambda" {
+  source     = "./modules/Lambda"
+  depends_on = [module.S3]
+
+  ninja_s3_bucket         = module.S3.ninja_s3_bucket
+  tags                    = var.tags
+  db_instance_metadata    = var.db_instance_metadata
+  sar_application         = var.sar_application
+  sar_application_version = var.sar_application_version
+}
