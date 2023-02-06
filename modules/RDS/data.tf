@@ -3,7 +3,7 @@ data "aws_vpc" "ninja_vpc" {
 }
 
 data "aws_subnet" "ninja_subnets" {
-  count = var.no_of_subnets
+  count = var.subnet_count
   id    = element(var.ninja_subnets.*.id, count.index)
 }
 

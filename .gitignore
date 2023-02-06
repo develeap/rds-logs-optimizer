@@ -1,15 +1,2 @@
-/packaged.yaml
-/.aws-sam/
-/lambda/coverage.out
-/venv/
-
 .terraform*
 *.tfvars
-
-LICENSE.txt
-Makefile
-*.md
-requirements.txt
-# template.yaml
-lambda/
-.github/

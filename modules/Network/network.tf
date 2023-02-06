@@ -7,11 +7,11 @@ resource "aws_vpc" "ninja_vpc" {
 }
 
 resource "aws_subnet" "ninja_subnets" {
-  count = var.no_of_subnets
+  count = var.subnet_count
 
   vpc_id                  = aws_vpc.ninja_vpc.id
-  cidr_block              = element(var.cidr_block, count.index)
-  availability_zone       = element(var.availability_zone, count.index)
+  cidr_block              = element(var.cidr_blocks, count.index)
+  availability_zone       = element(var.availability_zones, count.index)
   map_public_ip_on_launch = true
 
   tags = var.tags
@@ -35,7 +35,7 @@ resource "aws_route_table" "ninja_rtb" {
 }
 
 resource "aws_route_table_association" "ninja_rtb_association" {
-  count = var.no_of_subnets
+  count = var.subnet_count
 
   subnet_id      = element(aws_subnet.ninja_subnets.*.id, count.index)
   route_table_id = aws_route_table.ninja_rtb.id

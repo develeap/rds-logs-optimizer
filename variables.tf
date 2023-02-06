@@ -3,33 +3,33 @@ variable "tags" {
   description = "Tags assigned to the resources."
 }
 
-variable "no_of_subnets" {
+variable "subnet_count" {
   type        = number
-  description = "Number of subnets"
-  default     = 2
+  description = "Tags assigned to the resources."
+  default     = 3
 }
 
-variable "cidr_block" {
+variable "cidr_blocks" {
   type        = list(string)
   description = "CIDR block(s) for the subnet(s)"
 }
 
-variable "availability_zone" {
+variable "availability_zones" {
   type        = list(string)
   description = "Avaliability zones"
 }
 
-variable "ingress_one" {
+variable "ingress_rule_one" {
   type        = map(any)
   description = "First Inbound Rule"
 }
 
-variable "ingress_two" {
+variable "ingress_rule_two" {
   type        = map(any)
   description = "Second Inbound Rule"
 }
 
-variable "egress_all" {
+variable "egress_rule" {
   type        = map(any)
   description = "First Outbound Rule"
 }
@@ -83,28 +83,8 @@ variable "db_instance_password" {
   sensitive   = true
 }
 
-variable "db_instance_publicly_accessible_bool" {
-  type        = bool
-  default     = true
-  description = "RDS DB instance - publicly accessible (True/False)."
-}
-
-variable "db_instance_skip_final_snapshot_bool" {
-  type        = bool
-  default     = true
-  description = "RDS DB instance - skip final snapshot (True/False)."
-}
-
-variable "db_instance_parameter_group" {
+variable "db_instance_params" {
   type        = map(any)
-  description = "RDS DB instance paramter group."
-}
-
-variable "db_instance_parameters_map" {
-  type = object({
-    name  = string
-    value = string
-  })
   description = "RDS DB instance paramter group."
 }
 
@@ -114,14 +94,4 @@ variable "s3_metadata" {
     acl    = string
   })
   description = "Metadata of S3 bucket used to store logs from RDS instance."
-}
-
-variable "sar_application" {
-  type        = string
-  description = "SAR application ARN."
-}
-
-variable "sar_application_version" {
-  type        = string
-  description = "SAR application version."
 }

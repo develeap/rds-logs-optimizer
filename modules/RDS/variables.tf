@@ -3,9 +3,10 @@ variable "tags" {
   description = "Tags assigned to the resources."
 }
 
-variable "no_of_subnets" {
-  type        = any
+variable "subnet_count" {
+  type        = number
   description = "Tags assigned to the resources."
+  default     = 3
 }
 
 variable "ninja_vpc" {
@@ -50,27 +51,7 @@ variable "db_instance_password" {
   sensitive   = true
 }
 
-variable "db_instance_publicly_accessible_bool" {
-  type        = bool
-  default     = true
-  description = "RDS DB instance - publicly accessible (True/False)."
-}
-
-variable "db_instance_skip_final_snapshot_bool" {
-  type        = bool
-  default     = true
-  description = "RDS DB instance - skip final snapshot (True/False)."
-}
-
-variable "db_instance_parameter_group" {
+variable "db_instance_params" {
   type        = map(any)
-  description = "RDS DB instance paramter group."
-}
-
-variable "db_instance_parameters_map" {
-  type = object({
-    name  = string
-    value = string
-  })
   description = "RDS DB instance paramter group."
 }

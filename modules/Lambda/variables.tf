@@ -8,17 +8,7 @@ variable "db_instance_metadata" {
   description = "RDS DB instance metadata."
 }
 
-variable "sar_application" {
-  type        = string
-  description = "SAR application ARN."
-}
-
-variable "sar_application_version" {
-  type        = string
-  description = "SAR application version."
-}
-
 variable "ninja_s3_bucket" {
-  type = any
+  type        = any
   description = "SAR application version."
 }
