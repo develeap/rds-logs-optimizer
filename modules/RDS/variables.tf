@@ -1,57 +1,88 @@
-variable "tags" {
-  type        = map(any)
+variable "rds_logs_tags" {
+  type = object({
+    created_by = string
+    project    = string
+    team       = string
+  })
   description = "Tags assigned to the resources."
 }
 
-variable "subnet_count" {
+variable "rds_logs_subnet_count" {
   type        = number
-  description = "Tags assigned to the resources."
+  description = "The number of subnets in VPC."
   default     = 3
 }
 
-variable "ninja_vpc" {
-  type        = any
-  description = "Network module's VPC."
-}
-
-variable "ninja_subnets" {
+variable "rds_optimizer_subnetworks" {
   type        = any
   description = "Network module's Subnet."
 }
 
-variable "ninja_internet_gateway" {
-  type        = any
-  description = "Network module's Internet Gateway."
-}
-
-variable "ninja_security_group" {
+variable "rds_optimizer_security_group" {
   type        = any
   description = "Network module's Security Group."
 }
 
-variable "db_subnet_group_name" {
+variable "rds_logs_db_subnet_group_name" {
   type        = string
   description = "RDS DB subnet group name."
 }
 
-variable "db_instance_metadata" {
-  type        = map(any)
+variable "rds_logs_db_instance_metadata" {
+  type = object({
+    identifier           = string
+    instance_class       = string
+    allocated_storage    = number
+    engine               = string
+    engine_version       = string
+    major_engine_version = string
+    family               = string
+  })
   description = "RDS DB instance metadata."
 }
 
-variable "db_instance_username" {
+variable "publicly_accessible_bool" {
+  type        = bool
+  description = "RDS DB instance username."
+  default     = false
+}
+
+variable "skip_final_snapshot_bool" {
+  type        = bool
+  description = "RDS DB instance username."
+  default     = true
+}
+
+variable "storage_encrypted_bool" {
+  type        = bool
+  description = "RDS DB instance username."
+  default     = true
+}
+
+variable "multi_az_bool" {
+  type        = bool
+  description = "RDS DB instance username."
+  default     = true
+}
+
+variable "rds_logs_db_instance_username" {
   type        = string
   description = "RDS DB instance username."
   sensitive   = true
 }
 
-variable "db_instance_password" {
+variable "rds_logs_db_instance_password" {
   type        = string
   description = "RDS DB instance password"
   sensitive   = true
 }
 
-variable "db_instance_params" {
-  type        = map(any)
+variable "rds_logs_db_instance_params" {
+  type = object({
+    option_group_name             = string
+    params_group_name             = string
+    server_audit_file_rotate_size = string
+    server_audit_file_rotations   = string
+  })
   description = "RDS DB instance paramter group."
 }

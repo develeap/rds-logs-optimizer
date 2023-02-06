@@ -1,40 +1,63 @@
-variable "tags" {
-  type        = map(any)
+variable "rds_logs_tags" {
+  type = object({
+    created_by = string
+    project    = string
+    team       = string
+  })
   description = "Tags assigned to the resources."
 }
 
-variable "subnet_count" {
+variable "rds_logs_subnet_count" {
   type        = number
-  description = "Tags assigned to the resources."
+  description = "The number of subnets in VPC."
   default     = 3
 }
 
-variable "cidr_blocks" {
+variable "rds_logs_cidr_blocks" {
   type        = list(string)
   description = "CIDR block(s) for the subnet(s)"
 }
 
-variable "availability_zones" {
+variable "rds_logs_availability_zones" {
   type        = list(string)
   description = "Avaliability zones"
 }
 
-variable "ingress_rule_one" {
-  type        = map(any)
+variable "rds_logs_ingress_rule_one" {
+  type = object({
+    description = string
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = string
+  })
   description = "First Inbound Rule"
 }
 
-variable "ingress_rule_two" {
-  type        = map(any)
+variable "rds_logs_ingress_rule_two" {
+  type = object({
+    description = string
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = string
+  })
   description = "Second Inbound Rule"
 }
 
-variable "egress_rule" {
-  type        = map(any)
+variable "rds_logs_egress_rule" {
+  type = object({
+    description      = string
+    from_port        = number
+    to_port          = number
+    protocol         = string
+    cidr_blocks      = string
+    ipv6_cidr_blocks = string
+  })
   description = "First Outbound Rule"
 }
 
-variable "vpc_ip_range" {
+variable "rds_logs_vpc_ip_range" {
   type        = string
   description = "IP range for the VPC."
 }
@@ -51,44 +74,84 @@ variable "enable_dns_hostnames_bool" {
   description = "Enable DNS hostnames support for the VPC (True/False)."
 }
 
-variable "route_table_ip_range" {
+variable "rds_logs_route_table_ip_range" {
   type        = string
   description = "IP range for the routing table."
 }
 
-variable "security_group" {
-  type        = map(any)
+variable "rds_logs_security_group" {
+  type = object({
+    name        = string
+    description = string
+  })
   description = "Security Group metadata."
 }
 
-variable "db_subnet_group_name" {
+variable "rds_logs_db_subnet_group_name" {
   type        = string
   description = "RDS DB subnet group name."
 }
 
-variable "db_instance_metadata" {
-  type        = map(any)
+variable "rds_logs_db_instance_metadata" {
+  type = object({
+    identifier           = string
+    instance_class       = string
+    allocated_storage    = number
+    engine               = string
+    engine_version       = string
+    major_engine_version = string
+    family               = string
+  })
   description = "RDS DB instance metadata."
 }
 
-variable "db_instance_username" {
+variable "publicly_accessible_bool" {
+  type        = bool
+  description = "RDS DB instance username."
+  default     = false
+}
+
+variable "skip_final_snapshot_bool" {
+  type        = bool
+  description = "RDS DB instance username."
+  default     = true
+}
+
+variable "storage_encrypted_bool" {
+  type        = bool
+  description = "RDS DB instance username."
+  default     = true
+}
+
+variable "multi_az_bool" {
+  type        = bool
+  description = "RDS DB instance username."
+  default     = true
+}
+
+variable "rds_logs_db_instance_username" {
   type        = string
   description = "RDS DB instance username."
   sensitive   = true
 }
 
-variable "db_instance_password" {
+variable "rds_logs_db_instance_password" {
   type        = string
   description = "RDS DB instance password"
   sensitive   = true
 }
 
-variable "db_instance_params" {
-  type        = map(any)
+variable "rds_logs_db_instance_params" {
+  type = object({
+    option_group_name             = string
+    params_group_name             = string
+    server_audit_file_rotate_size = string
+    server_audit_file_rotations   = string
+  })
   description = "RDS DB instance paramter group."
 }
 
-variable "s3_metadata" {
+variable "rds_logs_s3_metadata" {
   type = object({
     bucket = string
     acl    = string

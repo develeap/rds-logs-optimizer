@@ -1,9 +1,13 @@
-variable "tags" {
-  type        = map(any)
+variable "rds_logs_tags" {
+  type = object({
+    created_by = string
+    project    = string
+    team       = string
+  })
   description = "Tags assigned to the resources."
 }
 
-variable "s3_metadata" {
+variable "rds_logs_s3_metadata" {
   type = object({
     bucket = string
     acl    = string

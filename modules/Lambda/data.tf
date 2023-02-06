@@ -1,3 +1,3 @@
-data "aws_s3_bucket" "ninja_s3_bucket" {
-  bucket = var.ninja_s3_bucket
+data "aws_s3_bucket" "rds_logs_s3_bucket" {
+  bucket = var.rds_logs_s3_bucket
 }

@@ -1,40 +1,63 @@
-variable "tags" {
-  type        = map(any)
+variable "rds_logs_tags" {
+  type = object({
+    created_by = string
+    project    = string
+    team       = string
+  })
   description = "Tags assigned to the resources."
 }
 
-variable "subnet_count" {
+variable "rds_logs_subnet_count" {
   type        = number
-  description = "Tags assigned to the resources."
+  description = "The number of subnets in VPC."
   default     = 3
 }
 
-variable "cidr_blocks" {
+variable "rds_logs_cidr_blocks" {
   type        = list(string)
   description = "CIDR block(s) for the subnet(s)"
 }
 
-variable "availability_zones" {
+variable "rds_logs_availability_zones" {
   type        = list(string)
   description = "Avaliability zones"
 }
 
-variable "ingress_rule_one" {
-  type        = map(any)
+variable "rds_logs_ingress_rule_one" {
+  type = object({
+    description = string
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = string
+  })
   description = "First Inbound Rule"
 }
 
-variable "ingress_rule_two" {
-  type        = map(any)
+variable "rds_logs_ingress_rule_two" {
+  type = object({
+    description = string
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = string
+  })
   description = "Second Inbound Rule"
 }
 
-variable "egress_rule" {
-  type        = map(any)
+variable "rds_logs_egress_rule" {
+  type = object({
+    description      = string
+    from_port        = number
+    to_port          = number
+    protocol         = string
+    cidr_blocks      = string
+    ipv6_cidr_blocks = string
+  })
   description = "First Outbound Rule"
 }
 
-variable "vpc_ip_range" {
+variable "rds_logs_vpc_ip_range" {
   type        = string
   description = "IP range for the VPC."
 }
@@ -51,12 +74,15 @@ variable "enable_dns_hostnames_bool" {
   description = "Enable DNS hostnames support for the VPC (True/False)."
 }
 
-variable "route_table_ip_range" {
+variable "rds_logs_route_table_ip_range" {
   type        = string
   description = "IP range for the routing table."
 }
 
-variable "security_group" {
-  type        = map(any)
+variable "rds_logs_security_group" {
+  type = object({
+    name        = string
+    description = string
+  })
   description = "Security Group metadata."
 }
