@@ -1,6 +1,7 @@
 module "Network" {
   source = "./modules/Network"
 
+  my_ip_address                 = data.external.my_ip_address.result.ip
   rds_logs_tags                 = var.rds_logs_tags
   rds_logs_subnet_count         = var.rds_logs_subnet_count
   rds_logs_cidr_blocks          = var.rds_logs_cidr_blocks

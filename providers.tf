@@ -4,6 +4,9 @@ terraform {
       source  = "hashicorp/aws"
       version = ">= 4.52.0"
     }
+    external = {
+      version = ">= 2.2.3"
+    }
   }
   backend "s3" {
     bucket = "adam-ninja"
@@ -13,5 +16,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-north-1"
-} 
+  region = var.aws_region
+}
+
+provider "external" {}

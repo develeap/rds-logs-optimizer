@@ -10,7 +10,7 @@ resource "aws_security_group" "rds_optimizer_security_group" {
     from_port   = var.rds_logs_ingress_rule_one["from_port"]
     to_port     = var.rds_logs_ingress_rule_one["to_port"]
     protocol    = var.rds_logs_ingress_rule_one["protocol"]
-    cidr_blocks = [var.rds_logs_ingress_rule_one["cidr_blocks"]]
+    cidr_blocks = ["${var.my_ip_address}/32"]
   }
 
   ingress {
@@ -18,7 +18,7 @@ resource "aws_security_group" "rds_optimizer_security_group" {
     from_port   = var.rds_logs_ingress_rule_two["from_port"]
     to_port     = var.rds_logs_ingress_rule_two["to_port"]
     protocol    = var.rds_logs_ingress_rule_two["protocol"]
-    cidr_blocks = [var.rds_logs_ingress_rule_two["cidr_blocks"]]
+    cidr_blocks = ["${var.my_ip_address}/32"]
   }
 
   egress {

@@ -1,3 +1,8 @@
+variable "aws_region" {
+  type        = string
+  description = "AWS Region in which the resources will be provisioned."
+}
+
 variable "rds_logs_tags" {
   type = object({
     created_by = string
@@ -23,13 +28,18 @@ variable "rds_logs_availability_zones" {
   description = "Avaliability zones"
 }
 
+variable "map_public_ip_on_launch_bool" {
+  type        = bool
+  description = "Map Public IP address in a subnet to be created? (True/False)"
+  default     = false
+}
+
 variable "rds_logs_ingress_rule_one" {
   type = object({
     description = string
     from_port   = number
     to_port     = number
     protocol    = string
-    cidr_blocks = string
   })
   description = "First Inbound Rule"
 }
@@ -40,7 +50,6 @@ variable "rds_logs_ingress_rule_two" {
     from_port   = number
     to_port     = number
     protocol    = string
-    cidr_blocks = string
   })
   description = "Second Inbound Rule"
 }

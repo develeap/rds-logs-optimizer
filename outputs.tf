@@ -1,3 +1,8 @@
+output "my_public_ip" {
+  description = "My public IP"
+  value       = module.Network.my_public_ip
+}
+
 output "rds_instance_hostname" {
   description = "RDS instance hostname"
   value       = module.RDS.rds_instance_hostname

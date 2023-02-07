@@ -12,7 +12,7 @@ resource "aws_subnet" "rds_optimizer_subnetworks" {
   vpc_id                  = aws_vpc.rds_optimizer_vpc.id
   cidr_block              = element(var.rds_logs_cidr_blocks, count.index)
   availability_zone       = element(var.rds_logs_availability_zones, count.index)
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = var.map_public_ip_on_launch_bool
 
   tags = var.rds_logs_tags
 }
