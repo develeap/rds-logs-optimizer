@@ -24,8 +24,8 @@ rds_logs_ingress_rule_one = {
 }
 rds_logs_ingress_rule_two = {
   description = "Inbound connection"
-  from_port   = 5432
-  to_port     = 5432
+  from_port   = 3306
+  to_port     = 3306
   protocol    = "TCP"
 }
 rds_logs_egress_rule = {
