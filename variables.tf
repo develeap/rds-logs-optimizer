@@ -3,7 +3,7 @@ variable "aws_region" {
   description = "AWS Region in which the resources will be provisioned."
 }
 
-variable "rds_logs_tags" {
+variable "tags" {
   type = object({
     created_by = string
     project    = string
@@ -12,18 +12,18 @@ variable "rds_logs_tags" {
   description = "Tags assigned to the resources."
 }
 
-variable "rds_logs_subnet_count" {
+variable "subnet_count" {
   type        = number
   description = "The number of subnets in VPC."
   default     = 3
 }
 
-variable "rds_logs_cidr_blocks" {
+variable "cidr_blocks" {
   type        = list(string)
   description = "CIDR block(s) for the subnet(s)"
 }
 
-variable "rds_logs_availability_zones" {
+variable "availability_zones" {
   type        = list(string)
   description = "Avaliability zones"
 }
@@ -34,7 +34,7 @@ variable "map_public_ip_on_launch_bool" {
   default     = false
 }
 
-variable "rds_logs_ingress_rule_one" {
+variable "ingress_rule_one" {
   type = object({
     description = string
     from_port   = number
@@ -44,7 +44,7 @@ variable "rds_logs_ingress_rule_one" {
   description = "First Inbound Rule"
 }
 
-variable "rds_logs_ingress_rule_two" {
+variable "ingress_rule_two" {
   type = object({
     description = string
     from_port   = number
@@ -54,19 +54,17 @@ variable "rds_logs_ingress_rule_two" {
   description = "Second Inbound Rule"
 }
 
-variable "rds_logs_egress_rule" {
+variable "egress_rule" {
   type = object({
-    description      = string
-    from_port        = number
-    to_port          = number
-    protocol         = string
-    cidr_blocks      = string
-    ipv6_cidr_blocks = string
+    description = string
+    from_port   = number
+    to_port     = number
+    protocol    = string
   })
   description = "First Outbound Rule"
 }
 
-variable "rds_logs_vpc_ip_range" {
+variable "vpc_ip_range" {
   type        = string
   description = "IP range for the VPC."
 }
@@ -83,12 +81,12 @@ variable "enable_dns_hostnames_bool" {
   description = "Enable DNS hostnames support for the VPC (True/False)."
 }
 
-variable "rds_logs_route_table_ip_range" {
+variable "route_table_ip_range" {
   type        = string
   description = "IP range for the routing table."
 }
 
-variable "rds_logs_security_group" {
+variable "security_group" {
   type = object({
     name        = string
     description = string
@@ -96,20 +94,21 @@ variable "rds_logs_security_group" {
   description = "Security Group metadata."
 }
 
-variable "rds_logs_db_subnet_group_name" {
+variable "db_subnet_group_name" {
   type        = string
   description = "RDS DB subnet group name."
 }
 
-variable "rds_logs_db_instance_metadata" {
+variable "db_metadata" {
   type = object({
-    identifier           = string
-    instance_class       = string
-    allocated_storage    = number
-    engine               = string
-    engine_version       = string
-    major_engine_version = string
-    family               = string
+    identifier              = string
+    instance_class          = string
+    allocated_storage       = number
+    engine                  = string
+    engine_version          = string
+    major_engine_version    = string
+    family                  = string
+    backup_retention_period = number
   })
   description = "RDS DB instance metadata."
 }
@@ -138,19 +137,19 @@ variable "multi_az_bool" {
   default     = true
 }
 
-variable "rds_logs_db_instance_username" {
+variable "db_username" {
   type        = string
   description = "RDS DB instance username."
   sensitive   = true
 }
 
-variable "rds_logs_db_instance_password" {
+variable "db_password" {
   type        = string
   description = "RDS DB instance password"
   sensitive   = true
 }
 
-variable "rds_logs_db_instance_params" {
+variable "db_params" {
   type = object({
     option_group_name             = string
     params_group_name             = string
@@ -160,10 +159,43 @@ variable "rds_logs_db_instance_params" {
   description = "RDS DB instance paramter group."
 }
 
-variable "rds_logs_s3_metadata" {
-  type = object({
-    bucket = string
-    acl    = string
-  })
-  description = "Metadata of S3 bucket used to store logs from RDS instance."
+variable "s3_bucket_name" {
+  type        = string
+  description = "The name of S3 bucket used to store logs from RDS instance."
+}
+
+variable "s3_bucket_versioning_status" {
+  type        = string
+  default     = "Enabled"
+  description = "The S3 bucket versioning status."
+}
+
+variable "block_public_acls_bool" {
+  type        = bool
+  default     = true
+  description = "The S3 bucket block public ACLs setting."
+}
+
+variable "block_public_policy_bool" {
+  type        = bool
+  default     = true
+  description = "The S3 bucket block public policy setting."
+}
+
+variable "ignore_public_acls_bool" {
+  type        = bool
+  default     = true
+  description = "The S3 bucket ignore public ACLs setting."
+}
+
+variable "restrict_public_buckets_bool" {
+  type        = bool
+  default     = true
+  description = "The S3 bucket restrict public buckets setting."
+}
+
+variable "s3_bucket_sse_algorithm" {
+  type        = string
+  default     = "aws:kms"
+  description = "The S3 bucket sse algorith."
 }

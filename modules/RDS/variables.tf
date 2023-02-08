@@ -1,4 +1,4 @@
-variable "rds_logs_tags" {
+variable "tags" {
   type = object({
     created_by = string
     project    = string
@@ -7,36 +7,37 @@ variable "rds_logs_tags" {
   description = "Tags assigned to the resources."
 }
 
-variable "rds_logs_subnet_count" {
+variable "subnet_count" {
   type        = number
   description = "The number of subnets in VPC."
   default     = 3
 }
 
-variable "rds_optimizer_subnetworks" {
+variable "subnetworks" {
   type        = any
   description = "Network module's Subnet."
 }
 
-variable "rds_optimizer_security_group" {
+variable "security_group" {
   type        = any
   description = "Network module's Security Group."
 }
 
-variable "rds_logs_db_subnet_group_name" {
+variable "db_subnet_group_name" {
   type        = string
   description = "RDS DB subnet group name."
 }
 
-variable "rds_logs_db_instance_metadata" {
+variable "db_metadata" {
   type = object({
-    identifier           = string
-    instance_class       = string
-    allocated_storage    = number
-    engine               = string
-    engine_version       = string
-    major_engine_version = string
-    family               = string
+    identifier              = string
+    instance_class          = string
+    allocated_storage       = number
+    engine                  = string
+    engine_version          = string
+    major_engine_version    = string
+    family                  = string
+    backup_retention_period = number
   })
   description = "RDS DB instance metadata."
 }
@@ -65,19 +66,19 @@ variable "multi_az_bool" {
   default     = true
 }
 
-variable "rds_logs_db_instance_username" {
+variable "db_username" {
   type        = string
   description = "RDS DB instance username."
   sensitive   = true
 }
 
-variable "rds_logs_db_instance_password" {
+variable "db_password" {
   type        = string
   description = "RDS DB instance password"
   sensitive   = true
 }
 
-variable "rds_logs_db_instance_params" {
+variable "db_params" {
   type = object({
     option_group_name             = string
     params_group_name             = string

@@ -1,4 +1,4 @@
-variable "rds_logs_tags" {
+variable "tags" {
   type = object({
     created_by = string
     project    = string
@@ -7,7 +7,7 @@ variable "rds_logs_tags" {
   description = "Tags assigned to the resources."
 }
 
-variable "rds_logs_db_instance_metadata" {
+variable "db_metadata" {
   type = object({
     identifier           = string
     instance_class       = string
@@ -20,10 +20,7 @@ variable "rds_logs_db_instance_metadata" {
   description = "RDS DB instance metadata."
 }
 
-variable "rds_logs_s3_metadata" {
-  type = object({
-    bucket = string
-    acl    = string
-  })
-  description = "Metadata of S3 bucket used to store logs from RDS instance."
+variable "s3_bucket" {
+  type        = any
+  description = "Logs S3 bucket ID."
 }
