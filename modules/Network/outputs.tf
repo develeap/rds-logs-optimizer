@@ -7,8 +7,3 @@ output "rds_optimizer_security_group" {
   value       = aws_security_group.rds_optimizer_security_group
   description = "Security Group used for load balancer and server(s)"
 }
-
-output "my_public_ip" {
-  value       = var.my_ip_address
-  description = "My public IP"
-}

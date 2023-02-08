@@ -20,7 +20,10 @@ variable "rds_logs_db_instance_metadata" {
   description = "RDS DB instance metadata."
 }
 
-variable "rds_logs_s3_bucket" {
-  type        = any
-  description = "The logs storing S3 bucket's id."
+variable "rds_logs_s3_metadata" {
+  type = object({
+    bucket = string
+    acl    = string
+  })
+  description = "Metadata of S3 bucket used to store logs from RDS instance."
 }

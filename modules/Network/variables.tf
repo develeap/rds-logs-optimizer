@@ -29,11 +29,6 @@ variable "map_public_ip_on_launch_bool" {
   default     = false
 }
 
-variable "my_ip_address" {
-  type        = any
-  description = "My IP address"
-}
-
 variable "rds_logs_ingress_rule_one" {
   type = object({
     description = string

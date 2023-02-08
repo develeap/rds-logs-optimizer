@@ -10,7 +10,7 @@ resource "aws_cloudformation_stack" "rds_logs_lambda_function" {
 
   parameters = {
     Name                  = "rds-audit-logs-${var.rds_logs_db_instance_metadata["identifier"]}"
-    BucketName            = data.aws_s3_bucket.rds_logs_s3_bucket.bucket_domain_name
+    BucketName            = aws_s3_bucket.rds_audit_logs.id
     RdsInstanceIdentifier = var.rds_logs_db_instance_metadata["identifier"]
     SarApplication        = local.sar_application
     SarApplicationVersion = local.sar_application_version
@@ -19,4 +19,15 @@ resource "aws_cloudformation_stack" "rds_logs_lambda_function" {
   capabilities = ["CAPABILITY_AUTO_EXPAND", "CAPABILITY_IAM"]
 
   tags = var.rds_logs_tags
+}
+
+resource "aws_s3_bucket" "rds_audit_logs" {
+  bucket = var.rds_logs_s3_metadata["bucket"]
+
+  tags = var.rds_logs_tags
+}
+
+resource "aws_s3_bucket_acl" "rds_audit_logs_acl" {
+  bucket = aws_s3_bucket.rds_audit_logs.id
+  acl    = var.rds_logs_s3_metadata["acl"]
 }

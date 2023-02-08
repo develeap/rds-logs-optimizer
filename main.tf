@@ -1,7 +1,6 @@
 module "Network" {
   source = "./modules/Network"
 
-  my_ip_address                 = data.external.my_ip_address.result.ip
   rds_logs_tags                 = var.rds_logs_tags
   rds_logs_subnet_count         = var.rds_logs_subnet_count
   rds_logs_cidr_blocks          = var.rds_logs_cidr_blocks
@@ -31,19 +30,11 @@ module "RDS" {
   rds_logs_db_instance_params   = var.rds_logs_db_instance_params
 }
 
-module "S3" {
-  source     = "./modules/S3"
-  depends_on = [module.RDS]
-
-  rds_logs_tags        = var.rds_logs_tags
-  rds_logs_s3_metadata = var.rds_logs_s3_metadata
-}
-
 module "Lambda" {
   source     = "./modules/Lambda"
-  depends_on = [module.S3]
+  depends_on = [module.RDS]
 
-  rds_logs_s3_bucket            = module.S3.rds_logs_s3_bucket
   rds_logs_tags                 = var.rds_logs_tags
   rds_logs_db_instance_metadata = var.rds_logs_db_instance_metadata
+  rds_logs_s3_metadata          = var.rds_logs_s3_metadata
 }
