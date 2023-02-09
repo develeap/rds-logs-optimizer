@@ -24,7 +24,7 @@ The entire solution architecture is comprised of the following elements:
     
 As in a graph below.
 
-[architecture graph to be added here]
+![RDS Optimizer architecture](/architecture/rds_optimizer.png "RDS Optimizer architecture")
 
 ## Sub-modules
 
