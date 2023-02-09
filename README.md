@@ -28,7 +28,29 @@ As in a graph below.
 
 ## Sub-modules
 
-[sub-modules tree and overview to be added here]
+```
+modules
+├── Lambda
+│   ├── cf_template.yaml
+│   ├── data.tf
+│   ├── lambda.tf
+│   ├── LICENSE.txt
+│   └── variables.tf
+├── Network
+│   ├── network.tf
+│   ├── outputs.tf
+│   ├── security_groups.tf
+│   └── variables.tf
+├── RDS
+│   ├── data.tf
+│   ├── rds.tf
+│   └── variables.tf
+└── S3
+    ├── bucket.tf
+    ├── data.tf
+    ├── outputs.tf
+    └── variables.tf
+```
 
 ## Usage
 
