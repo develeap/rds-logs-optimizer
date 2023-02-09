@@ -1,9 +1,19 @@
 locals {
-  sar_application         = "arn:aws:serverlessrepo:eu-central-1:640663510286:applications/rds-audit-logs-s3"
-  sar_application_version = "1.0.1"
+  # Lambda application code is created and owned by Personio GmbH, and has been used by develeap 
+  # to create the terraform Lambda module as in: https://github.com/personio/rds-audit-logs-s3/blob/main/README.md
+
+  # The copy provided below under "sar_application" local variable is a re-deployment
+  # of original Personio GmbH SAR application. Credit given to Personio GmbH as the author,
+  # based on the following license: https://github.com/personio/rds-audit-logs-s3/blob/main/LICENSE.txt
+
+  sar_application         = "arn:aws:serverlessrepo:eu-north-1:006262944085:applications/rds-optimizer"
+  sar_application_version = "1.0.0"
 }
 
 resource "aws_cloudformation_stack" "lambda_function" {
+  # CloudFormation template is created and owned by Personio GmbH, and has been used by develeap
+  # to create the terraform Lambda module as in: https://github.com/personio/rds-audit-logs-s3/blob/main/README.md
+
   name = "rds-audit-logs-${var.db_metadata["identifier"]}"
 
   template_body = file("${path.module}/cf_template.yaml")

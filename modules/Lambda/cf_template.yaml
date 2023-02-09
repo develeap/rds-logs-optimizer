@@ -1,3 +1,6 @@
+# CloudFormation template is created and owned by Personio GmbH, and has been used by Develeap
+# to create the terraform Lambda module as in: https://github.com/personio/rds-audit-logs-s3/blob/main/README.md
+
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 

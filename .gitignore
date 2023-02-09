@@ -1,2 +1,3 @@
 .terraform*
-optimizer*.tfvars
+rds_optimizer.tfvars
+serverless/
