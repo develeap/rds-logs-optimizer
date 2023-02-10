@@ -385,4 +385,6 @@ The result should look similar to this:
 
 ![Athena query](/pictures/athena_query.png "Athena query")
 
-*The RDS Optimizer terraform module is owned by **Develeap** (MIT License), and is based on Lambda serverless function code originally written by **Personio GmbH**, released under the MIT License: https://github.com/personio/rds-audit-logs-s3/blob/main/LICENSE.txt*
+## Credits and legal ownership
+
+*The RDS Optimizer terraform module is owned by **Develeap** ![MIT License](/LICENSE "MIT License")., and is based on Lambda serverless function code originally written by **Personio GmbH**, released under the MIT License: https://github.com/personio/rds-audit-logs-s3/blob/main/LICENSE.txt*
