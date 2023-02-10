@@ -29,10 +29,10 @@ As in a graph below.
 ## Sub-modules
 
 The "RDS Optimizer" module is compose of four sub-modules which are connected to one another, as follows:
- - Network module: introducing a VPC, Subnets, Internet Gateway, Route Table, Security Group (a basis for RDS instance);
- - RDS module: using Network's subnets and security group as data sources, also introducing a DB subnet group, DB parameter group, DB option group, as well as RDS DB instance itself;
- - S3 module: using current user's ID as cannonical user data source, also introducing a fully-cofigured S3 bucket that is later exported to Lambda module;
- - Lambda module: a Personio GmbH-owned one, from develeap's side only using S3 module's S3 bucket and a redeployed version of RDS Optimizer in Serverless Application Repository as data source; also introducing a CloudFormation stack with DynamoDB table and a fully-configured RDS Optimizer Lambda function included.
+ - **Network module**: introducing a VPC, Subnets, Internet Gateway, Route Table, Security Group (a basis for RDS instance);
+ - **RDS module**: using Network's subnets and security group as data sources, also introducing a DB subnet group, DB parameter group, DB option group, as well as RDS DB instance itself;
+ - **S3 module**: using current user's ID as cannonical user data source, also introducing a fully-cofigured S3 bucket that is later exported to Lambda module;
+ - **Lambda module**: a Personio GmbH-owned one, from develeap's side only using S3 module's S3 bucket and a redeployed version of RDS Optimizer in Serverless Application Repository as data source; also introducing a CloudFormation stack with DynamoDB table and a fully-configured RDS Optimizer Lambda function included.
 
 Find the sub-modules tree below.
 
@@ -383,6 +383,6 @@ Run the query. Click on your table and choose 'Load partitions' options. Then cl
 
 The result should look similar to this:
 
-![Athena query](/pictures/athena_query.png) "Athena query")
+![Athena query](/pictures/athena_query.png "Athena query")
 
 *The RDS Optimizer terraform module is owned by **Develeap** (MIT License), and is based on Lambda serverless function code originally written by **Personio GmbH**, released under the MIT License: https://github.com/personio/rds-audit-logs-s3/blob/main/LICENSE.txt*
