@@ -1,17 +1,23 @@
 # Example .tfvars file with correct set of variables
 # for the terraform module to run properly.
 
-# NOTE: Some of these must be changed before planned 'terraform apply' action
+# NOTE: Some of these must be changed before planned 'terraform apply' action.
+# Also, remember to delete ".example" part from the filename before use.
 
+# General part
 aws_region         = "ap-south-1"
-cidr_blocks        = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
-availability_zones = ["ap-south-1a", "ap-south-1b", "ap-south-1c"]
 tags = {
   created_by = "Your Name"
   project    = "RDS Optimizer"
   team       = "Your Team"
 }
+
+# Network part
+vpc_ip_range         = "10.0.0.0/16"
 subnet_count = 3
+cidr_blocks        = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
+availability_zones = ["ap-south-1a", "ap-south-1b", "ap-south-1c"]
+route_table_ip_range = "0.0.0.0/0"
 security_group = {
   name        = "rds_optimizer_security_group"
   description = "Security Group for RDS Optimizer"
@@ -34,8 +40,8 @@ egress_rule = {
   to_port     = 0
   protocol    = "-1"
 }
-vpc_ip_range         = "10.0.0.0/16"
-route_table_ip_range = "0.0.0.0/0"
+
+# RDS part
 db_subnet_group_name = "rds-optimizer-db-subnet-group"
 db_metadata = {
   identifier              = "rds-optimizer-db"
@@ -56,4 +62,6 @@ db_params = {
   server_audit_file_rotate_size = "10"
   server_audit_file_rotations   = "10"
 }
+
+# S3 part
 s3_bucket_name = "rds-optimizer-bucket"
