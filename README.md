@@ -361,6 +361,8 @@ You should:
   - Check if Lambda function is applied correctly in Lambda Monitor tab and in Lambda CloudWatch Logs tab
 
   ![Lambda status metrics](/pictures/lambda_metrics.png "Lambda status metrics")
+
+  
   ![Lambda status logs](/pictures/lambda_logs.png "Lambda status logs")
 
 
