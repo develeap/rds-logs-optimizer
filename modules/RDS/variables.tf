@@ -85,5 +85,5 @@ variable "db_params" {
     server_audit_file_rotate_size = string
     server_audit_file_rotations   = string
   })
-  description = "RDS DB instance paramter group."
+  description = "RDS DB instance parameter group."
 }

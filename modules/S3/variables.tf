@@ -45,5 +45,5 @@ variable "restrict_public_buckets_bool" {
 variable "s3_bucket_sse_algorithm" {
   type        = string
   default     = "aws:kms"
-  description = "The S3 bucket sse algorith."
+  description = "The S3 bucket sse algorithm."
 }

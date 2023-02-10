@@ -25,7 +25,7 @@ variable "cidr_blocks" {
 
 variable "availability_zones" {
   type        = list(string)
-  description = "Avaliability zones"
+  description = "Availability zones"
 }
 
 variable "map_public_ip_on_launch_bool" {
@@ -156,7 +156,7 @@ variable "db_params" {
     server_audit_file_rotate_size = string
     server_audit_file_rotations   = string
   })
-  description = "RDS DB instance paramter group."
+  description = "RDS DB instance parameter group."
 }
 
 variable "s3_bucket_name" {
@@ -197,5 +197,5 @@ variable "restrict_public_buckets_bool" {
 variable "s3_bucket_sse_algorithm" {
   type        = string
   default     = "aws:kms"
-  description = "The S3 bucket sse algorith."
+  description = "The S3 bucket sse algorithm."
 }

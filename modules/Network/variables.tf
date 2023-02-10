@@ -20,7 +20,7 @@ variable "cidr_blocks" {
 
 variable "availability_zones" {
   type        = list(string)
-  description = "Avaliability zones"
+  description = "Availability zones"
 }
 
 variable "map_public_ip_on_launch_bool" {
