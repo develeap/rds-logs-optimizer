@@ -6,9 +6,9 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "adam-ninja"
+    bucket = "bucket-name"
     key    = "rds_optimizer"
-    region = "eu-north-1"
+    region = "sample-region"
   }
 }
 

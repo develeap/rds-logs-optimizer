@@ -331,12 +331,24 @@ As a proposed variables example you can use the ![Example RDS Optimizer .tfvars 
 
 Below you can find the instruction of how to use the module to decrease the cost of your RDS database's audit logs storage.
 
-#### 1. Terraform apply
+#### 1. Update the remote backend state file location in providers.tf file.
+
+Change this part to your own s3 bucket which will be used to store the terraform.tfstate file:
+
+```
+backend "s3" {
+  bucket = "bucket-name"
+  key    = "rds_optimizer"
+  region = "sample-region"
+}
+```
+
+#### 2. Terraform apply
 
 Use the `terraform apply -var-file rds_optimizer.tfvars -auto-approve` in your command line.
 It should take approximately 20 minutes until the infrastructure is built.
 
-#### 2. Check the resources
+#### 3. Check the resources
 
 After the terraform manifest is applied succesfully, I strongly recommend that you check if the resources are correctly deployed in your AWS panel. 
 
@@ -356,7 +368,7 @@ You should:
 
   ![S3 bucket status](/pictures/s3_bucket_status.png "S3 bucket status")
 
-#### 3. (Optionally) Run an Athena query
+#### 4. (Optionally) Run an Athena query
 
 In the end you can run an Athena query from your S3 bucket-stored logs to prove the module working as it is supposed to.
 
