@@ -14,12 +14,12 @@ resource "aws_cloudformation_stack" "lambda_function" {
   # CloudFormation template is created and owned by Personio GmbH, and has been used by develeap
   # to create the terraform Lambda module as in: https://github.com/personio/rds-audit-logs-s3/blob/main/README.md
 
-  name = "rds-audit-logs-${var.db_metadata["identifier"]}"
+  name = "rds-logs-optimizer-${var.db_metadata["identifier"]}"
 
   template_body = file("${path.module}/cf_template.yaml")
 
   parameters = {
-    Name                  = "rds-audit-logs-${var.db_metadata["identifier"]}"
+    Name                  = "rds-logs-optimizer-${var.db_metadata["identifier"]}"
     BucketName            = data.aws_s3_bucket.s3_bucket.bucket
     RdsInstanceIdentifier = var.db_metadata["identifier"]
     SarApplication        = local.sar_application

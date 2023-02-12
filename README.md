@@ -1,12 +1,12 @@
-# RDS Optimizer
+# RDS Logs Optimizer
 
 ## Purpose
 
-RDS Optimizer module is a solution that significantly reduces the cost of storing RDS database logs in AWS.
+RDS Logs Optimizer module is a solution that significantly reduces the cost of storing RDS database logs in AWS.
 
 Instead of CloudWatch, the module provides an alternative in a Lambda serverless function that sources database logs from an RDS DB instance (facilitated with MariaDB Audit Plugin - suitable for MariaDB or MySQL only) and puts them into a designed S3 bucket, sorting them on a yearly, monthly, daily, and even hourly rate. Lambda is triggered 4 times an hour (every 15 minutes), lambda run timestamps being saved in a DynamoDB table so as to make sure that only the latest logs are sourced and no logs are lost in the process. Finally, the sorted logs can be easily queried using Athena.
 
-As a result, thanks to the RDS Optimizer module, the overall costs of sourcing, keeping, and querying RDS DB instance audit logs can be decreased approximately tenfold.
+As a result, thanks to the RDS Logs Optimizer module, the overall costs of sourcing, keeping, and querying RDS DB instance audit logs can be decreased approximately tenfold.
 
 ## Architecture
 
@@ -24,15 +24,15 @@ The entire solution architecture is comprised of the following elements:
     
 As in the graph below.
 
-![RDS Optimizer architecture](/pictures/rds_optimizer_architecture.png "RDS Optimizer architecture")
+![RDS Logs Optimizer architecture](/pictures/rds_logs_optimizer_architecture.png "RDS Logs Optimizer architecture")
 
 ## Sub-modules
 
-The "RDS Optimizer" module is composed of four sub-modules which are connected to one another, as follows:
+The "RDS Logs Optimizer" module is composed of four sub-modules which are connected to one another, as follows:
  - **Network module**: introducing a VPC, Subnets, Internet Gateway, Route Table, Security Group (a basis for RDS instance);
  - **RDS module**: using Network's subnets and security group as data sources, also introducing a DB subnet group, DB parameter group, DB option group, as well as RDS DB instance itself;
  - **S3 module**: using current user's ID as canonical user data source, also introducing a fully-configured S3 bucket that is later exported to Lambda module;
- - **Lambda module**: a Personio GmbH-owned one, from develeap's side only using S3 module's S3 bucket and a redeployed version of RDS Optimizer in Serverless Application Repository as data source; also introducing a CloudFormation stack with DynamoDB table and a fully-configured RDS Optimizer Lambda function included.
+ - **Lambda module**: a Personio GmbH-owned one, from develeap's side only using S3 module's S3 bucket and a redeployed version of RDS Logs Optimizer in Serverless Application Repository as data source; also introducing a CloudFormation stack with DynamoDB table and a fully-configured RDS Logs Optimizer Lambda function included.
 
 Find the sub-modules tree below.
 
@@ -62,7 +62,7 @@ modules
 
 ## Variables
 
-To run successfully, the RDS Optimizer module requires the following input variables:
+To run successfully, the RDS Logs Optimizer module requires the following input variables:
 
 ```
 variable "aws_region" {
@@ -325,7 +325,7 @@ variable "s3_bucket_sse_algorithm" {
 }
 ```
 
-As a proposed variables example you can use the ![Example RDS Optimizer .tfvars file](/rds_optimizer.tfvars.example "Example RDS Optimizer .tfvars file").
+As a proposed variables example you can use the ![Example RDS Logs Optimizer .tfvars file](/rds_logs_optimizer.tfvars.example "Example RDS Logs Optimizer .tfvars file").
 
 ## Usage
 
@@ -338,14 +338,14 @@ Change this part to your own s3 bucket which will be used to store the terraform
 ```
 backend "s3" {
   bucket = "bucket-name"
-  key    = "rds_optimizer"
+  key    = "rds_logs_optimizer"
   region = "sample-region"
 }
 ```
 
 #### 2. Terraform apply
 
-Use the `terraform apply -var-file rds_optimizer.tfvars -auto-approve` in your command line.
+Use the `terraform apply -var-file rds_logs_optimizer.tfvars -auto-approve` in your command line.
 It should take approximately 20 minutes until the infrastructure is built.
 
 #### 3. Check the resources
@@ -401,4 +401,4 @@ The result should look similar to this:
 
 ## Credits and legal ownership
 
-*The RDS Optimizer terraform module is owned by **Develeap** (![MIT License](/LICENSE "MIT License")), and is based on Lambda serverless function code originally written by **Personio GmbH**, released under the MIT License: https://github.com/personio/rds-audit-logs-s3/blob/main/LICENSE.txt*
+*The RDS Logs Optimizer terraform module is owned by **Develeap** (![MIT License](/LICENSE "MIT License")), and is based on Lambda serverless function code originally written by **Personio GmbH**, released under the MIT License: https://github.com/personio/rds-audit-logs-s3/blob/main/LICENSE.txt*

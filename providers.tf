@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket = "bucket-name"
-    key    = "rds_optimizer"
+    key    = "rds_logs_optimizer"
     region = "sample-region"
   }
 }
