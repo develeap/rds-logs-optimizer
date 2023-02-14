@@ -390,7 +390,7 @@ PARTITIONED BY (
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 STORED AS TEXTFILE
-LOCATION 's3://rds-optimizer-bucket/rds-optimizer-db/audit-logs/'
+LOCATION 's3://rds-logs-optimizer-bucket/rds-logs-optimizer-db/audit-logs/'
 ```
 
 Run the query. Click on your table and choose 'Load partitions' options. Then click on the table again and choose 'Preview Table'.
