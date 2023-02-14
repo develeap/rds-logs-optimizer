@@ -345,7 +345,7 @@ backend "s3" {
 
 #### 2. Terraform apply
 
-Use the `terraform apply -var-file rds_logs_optimizer.tfvars -auto-approve` in your command line.
+Use the `terraform init && terraform apply -var-file rds_logs_optimizer.tfvars -auto-approve` in your command line.
 It should take approximately 20 minutes until the infrastructure is built.
 
 #### 3. Check the resources
