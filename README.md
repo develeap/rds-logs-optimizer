@@ -325,7 +325,7 @@ variable "s3_bucket_sse_algorithm" {
 }
 ```
 
-As a proposed variables example you can use the ![Example RDS Logs Optimizer .tfvars file](/rds_logs_optimizer.tfvars.example "Example RDS Logs Optimizer .tfvars file").
+As a proposed variables example you can use the [example RDS Logs Optimizer .tfvars file](/rds_logs_optimizer.tfvars.example).
 
 ## Usage
 
@@ -401,4 +401,4 @@ The result should look similar to this:
 
 ## Credits and legal ownership
 
-*The RDS Logs Optimizer terraform module is owned by **Develeap** (![MIT License](/LICENSE "MIT License")), and is based on Lambda serverless function code originally written by **Personio GmbH**, released under the MIT License: https://github.com/personio/rds-audit-logs-s3/blob/main/LICENSE.txt*
+*The RDS Logs Optimizer terraform module is owned by **Develeap** ([MIT License](/LICENSE)), and is based on Lambda serverless function code originally written by **Personio GmbH**, released under the MIT License: https://github.com/personio/rds-audit-logs-s3/blob/main/LICENSE.txt*
